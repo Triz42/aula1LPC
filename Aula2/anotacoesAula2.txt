@@ -1,0 +1,113 @@
+Praticar Python.
+
+variavel recebe o obj da classe e seta os atributos.
+p = Pessoa("Fabio", 25)
+
+Se a classe tem um 'toString' como o '__str__' do python, o codigo abaixo imprime a classe ou nome.
+print(p)
+
+print(p.idade) #Vai dar erro se n ter idade no parametro.
+
+Alterar nome
+p.nome = "Beatriz Teles Castro"
+
+Acessar atributo especifico da instancia da classe
+print(p.nome)
+
+--- Não vai funcionar
+a =  Pessoa()
+a.nome = "Miguel"
+
+Vai funfar
+a =  Pessoa("Paulo", 45)
+a.nome = "Miguel"
+
+
+Tirar Contrutor e definir variaves dentro da classe fora do init da certo:
+
+	Classe Pessoa():
+		nome = ""
+		idade = ""
+		def __init__(self)
+
+p = Pessoa()
+p.nome = "Miguel"
+
+
+Maioria das classes no Django n tem construtor, se estiver dentro do construtor de atributo de instancia, se estiver fora e atributo de classe.
+
+Encapsulamento - quando acesso as coisas no metodo -
+	EX: __str__
+	Atributo da classe estao sendo modificados na instancia:
+		Classe Pessoa():	
+			nome = ""
+			idade = ""
+			def __init__(self, nome, idade)
+	Nao fazer 'get' e 'set' se no python e possivel acessar direto
+Herança - Classe tem atributos ou metodos da outra
+
+	Classe Pessoa():
+		nome = ""
+		idade = ""
+		def __init__(self, nome, idade):
+			self.nome = nome
+			self.idade = idade
+		def __str__(self):
+			return self.nome
+
+	Classe PessoaFisica(Pessoa):
+		
+		def __init__(self, cpf):
+			self.cpf = cpf
+		#CPF atributo de instancia.
+		def __str__(self):
+			return u'{} - {}'.format(self.cpf, self.idade)
+
+Polimorfismo - Sobrescreve metodos que pode
+
+	Classe Pessoa():
+		nome = ""
+		idade = ""
+		def __init__(self, nome, idade):
+			self.nome = nome
+			self.idade = idade
+		def __str__(self):
+			return self.nome
+
+	Classe PessoaFisica(Pessoa):
+		
+		def __init__(self, cpf, nome, idade):
+			Pessoa__init__(self.nome, self.idade)
+			self.cpf = cpf
+		#CPF atributo de instancia.
+		def __str__(self):
+			return u'{} - {}'.format(self.cpf, self.idade)
+
+Classe PessoaJuridica(Pessoa):
+		
+		def __init__(self, cnpj,  nome, idade):
+			Pessoa__init__(self.nome, self.idade)
+			self.cnpjf = cnpj
+		#CPF atributo de instancia.
+		def __str__(self):
+			return u'{} - {}'.format(self.cpf, self.idade)
+
+
+19:54 09/08/2019
+
+Composição - Relacionamento entre classes.
+	"Onde fica a chave estrangeira? "Depende das regras da modelagem
+	Se colocar end na pessoa significa que ela vai ter so um end
+	E ao contrario, a pessoa teria varios.
+
+
+Classe Pessoa():
+		nome = ""
+		idade = ""
+		def __init__(self, nome, idade):
+			self.nome = nome
+			self.idade = idade
+			self.endereco = Endereco('rua 1')
+			Associando o atributo da classe(Pessoa) a uma instancia da outra(Endereco)
+		def __str__(self):
+			return self.nome
